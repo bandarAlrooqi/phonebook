@@ -8,13 +8,41 @@
 	<div class="bgmodal">
 	</div>
 	<div class="modal">
-		<form>
+		<form method="post">
             {% csrf_token %}
             {{ form.as_p }}
-			<button><a href="index.html">Save</a></button>
-			<button><a href="home.html">Cancel</a></button>
+        <div id="formset">
+            {% for f in formset %}
+                {{ f.as_table }}
+            {% endfor %}
+        </div>
+            <button type="submit">Save</button>
+            <input type="button" id ="add-form-btn" value="Add more numbers">
+            <input type="button" id ="remove-form-btn" value="Remove last number">
 		</form>
 	</div>
 </div>
+<script>
+    i = 1;
+    // allow user to add more numbers from formset
+    var addFormBtn = document.getElementById('add-form-btn');
+    addFormBtn.addEventListener('click', function(){
+        var formset = document.getElementById('formset');
+        var newForm = document.createElement('div');
+        newForm.innerHTML = '<Label>Number: </Label><input type="text" name="formset-' + i + '-number" maxlength="10" required id="id_formset-' + i + '-number">';
+        formset.appendChild(newForm);
+        i++;
+    });
+    // remove last number from formset
+    var removeFormBtn = document.getElementById('remove-form-btn');
+    removeFormBtn.addEventListener('click', function(){
+        if(i > 1){
+            var formset = document.getElementById('formset');
+            formset.removeChild(formset.lastChild);
+            i--;
+        }
+    });
+
+</script>
 </body>
 </html>
