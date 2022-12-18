@@ -14,4 +14,4 @@ class Contact(forms.ModelForm):
 
 
 class Contact_number(forms.Form):
-    number = forms.CharField(max_length=10, min_length=10, required=True)
+    number = forms.CharField(max_length=10, min_length=10, widget=forms.TextInput(attrs={'required': True}))

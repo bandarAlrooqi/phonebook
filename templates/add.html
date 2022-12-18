@@ -29,7 +29,7 @@
     addFormBtn.addEventListener('click', function(){
         var formset = document.getElementById('formset');
         var newForm = document.createElement('div');
-        newForm.innerHTML = '<Label>Number: </Label><input type="text" name="formset-' + i + '-number" maxlength="10" required id="id_formset-' + i + '-number">';
+        newForm.innerHTML = '<Label>Number: </Label><input type="text" name="formset-' + i + '-number" maxlength="10" minlength="10" required id="id_formset-' + i + '-number">';
         formset.appendChild(newForm);
         i++;
     });
