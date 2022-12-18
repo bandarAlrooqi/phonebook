@@ -25,7 +25,7 @@ def add(request):
             for number in numbers.values():
                 Number.objects.create(number=number, phonebook=user)
             return HttpResponseRedirect('/display/' + str(user.id))
-    return render(request, 'add.html', {'form': Contact(), 'formset':formset_factory(Contact_number)})
+    return render(request, 'add.html', {'form': Contact(), 'formset': formset_factory(Contact_number)})
 
 
 def display(request, pk):
