@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.forms import formset_factory
 from .form import *
-
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 def home(request):
@@ -29,10 +29,11 @@ def add(request):
 
 
 def display(request, pk):
+    # get or 404 returns a 404 error if the object is not found
+    contact = get_object_or_404(Phonebook, pk=pk)
     numbers = Number.objects.filter(phonebook=pk)
-    phonebook = Phonebook.objects.get(id=pk)
     context = {
         'numbers': numbers,
-        'phonebook': phonebook
+        'phonebook': contact
     }
     return render(request, 'display.html', context)
