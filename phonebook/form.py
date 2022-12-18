@@ -3,7 +3,6 @@ from .models import *
 
 
 class Contact(forms.ModelForm):
-    # allow user to enter only 11 digits
     class Meta:
         model = Phonebook
         fields = ['first_name', 'last_name']
